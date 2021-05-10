@@ -1,4 +1,16 @@
-<?php include "header.php"; ?>
+<?php
+    include "header.php"; 
+    include "config.php";
+    if(isset($_POST['save'])){
+        $category_name = mysqli_escape_string($conn,$_POST['cat']);
+        $sql = "INSERT INTO category (category_name)
+                VALUES ('{$category_name}')";
+        $result = mysqli_query($conn,$sql) or die("Query Failed");
+        header("Location:{$hostname}/admin/category.php");
+    }
+
+
+?>
   <div id="admin-content">
       <div class="container">
           <div class="row">
