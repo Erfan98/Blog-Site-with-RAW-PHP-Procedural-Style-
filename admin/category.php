@@ -23,7 +23,10 @@ if($_SESSION['role']!=1):header("Location:{$hostname}/admin/post.php");endif;
                     </thead>
                     <tbody>
                         <?php
-                        $sql="SELECT * FROM category ORDER BY category_id ASC";
+                        $current_page = $_GET['page'] ?? 1;
+                        $limit = 3;
+                        $offset= ($current_page-1)*3;
+                        $sql="SELECT * FROM category ORDER BY category_id DESC LIMIT {$offset},3";
                         $result = mysqli_query($conn,$sql) or die("Query Failed");
                         while($row=mysqli_fetch_assoc($result)){
                         ?>
@@ -34,22 +37,25 @@ if($_SESSION['role']!=1):header("Location:{$hostname}/admin/post.php");endif;
                             <td class='edit'><a href='update-category.php'><i class='fa fa-edit'></i></a></td>
                             <td class='delete'><a href='delete-category.php'><i class='fa fa-trash-o'></i></a></td>
                             </tr>
-
-
-
-
-
                         <?php    
                         }
                         ?>
                         
                     </tbody>
                 </table>
-                <ul class='pagination admin-pagination'>
-                    <li class="active"><a>1</a></li>
-                    <li><a>2</a></li>
-                    <li><a>3</a></li>
-                </ul>
+
+                <?php 
+                    $sql_total_cat = "SELECT * FROM category";
+                    $result = mysqli_query($conn,$sql_total_cat);
+                    $total_category = mysqli_num_rows($result);
+                    $total_page= ceil($total_category/$limit);
+
+                    echo "<ul class='pagination admin-pagination'>";
+                    for($i=1;$i<=$total_page;$i++){
+                        echo "<li><a href='category.php?page={$i}'>{$i}</a></li>";
+                    }
+                    echo "</ul>"
+                ?>
             </div>
         </div>
     </div>
