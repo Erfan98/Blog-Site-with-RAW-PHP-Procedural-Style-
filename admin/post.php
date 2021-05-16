@@ -49,7 +49,7 @@
                               <td><?php echo $row['post_date'];?></td>
                               <td><?php echo $row['username'];?></td>
                               <td class='edit'><a <?php echo "href='update-post.php?id={$row['post_id']}'";?> ><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a <?php echo "href='delete-post.php?post_id={$row['post_id']}'";?>><i class='fa fa-trash-o'></i></a></td>
+                              <td class='delete'><a <?php echo "href='delete-post.php?post_id={$row['post_id']}&cat_id={$row['category_id']}&img={$row['post_img']}'";?>><i class='fa fa-trash-o'></i></a></td>
                             </tr>
                         <?php
                         }
