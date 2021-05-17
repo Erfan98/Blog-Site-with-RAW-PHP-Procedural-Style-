@@ -35,7 +35,7 @@ if($_SESSION['role']!=1):header("Location:{$hostname}/admin/post.php");endif;
                             <td><?php echo $row['category_name'];?></td>
                             <td><?php echo $row['post'];?></td>
                             <td class='edit'><a href='update-category.php'><i class='fa fa-edit'></i></a></td>
-                            <td class='delete'><a href='delete-category.php'><i class='fa fa-trash-o'></i></a></td>
+                            <td class='delete'><a href='delete-category.php?id=<?php echo $row['category_id'];?>'><i class='fa fa-trash-o'></i></a></td>
                             </tr>
                         <?php    
                         }

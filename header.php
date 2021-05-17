@@ -35,10 +35,21 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class='menu'>
-                    <li><a href='category.php'>Business</a></li>
-                    <li><a href='category.php'>Entertainment</a></li>
-                    <li><a href='category.php'>Sports</a></li>
-                    <li><a href='category.php'>Politics</a></li>
+                <?php
+                include "config.php";
+
+                $sql = "SELECT  * FROM category";
+                $result=mysqli_query($conn,$sql) or die(mysqli_error($conn));
+                while($row=mysqli_fetch_assoc($result)){
+
+                    echo "<li><a href='category.php'>{$row['category_name']}</a></li>";
+
+                }
+                
+                
+                
+                ?>
+                    
                 </ul>
             </div>
         </div>

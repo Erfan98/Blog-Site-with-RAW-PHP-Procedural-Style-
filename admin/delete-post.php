@@ -3,7 +3,6 @@ include "config.php";
 $post_id= $_GET['post_id'];
 $category = $_GET['cat_id'];
 $img= $_GET['img'];
-//print_r($_GET);
 $sql = "DELETE FROM post WHERE post_id={$post_id};";
 $sql.="UPDATE category SET post = post-1  WHERE category_id = {$category}";
 unlink("upload/".$img);

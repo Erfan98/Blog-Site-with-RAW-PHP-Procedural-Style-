@@ -31,12 +31,17 @@ if(empty($_FILES['new-image']['name'])){
     }
 
 }
+$post_title=mysqli_real_escape_string($conn,$_POST['post_title']);
+$post_desc=mysqli_real_escape_string($conn,$_POST['postdesc']);
+$post_category=mysqli_real_escape_string($conn,$_POST['category']);
+$post_id=mysqli_real_escape_string($conn,$_POST['post_id']);
+
+$sql = "UPDATE post SET title='{$post_title}' ,description='{$post_desc}' ,category='{$post_category}' ,post_img='{$file_name}' WHERE post_id={$post_id}";
+
+echo $sql;
 
 
-$sql = "UPDATE post SET title= '{$_POST['post_title']}',description= '{$_POST['postdesc']}',category= '{$_POST['category']}',post_img='{$file_name}' WHERE post_id='{$_POST ['post_id']}'";
 
-
-
-mysqli_query($conn,$sql)? header("Location:{$hostname}/admin/post.php"):print_r("Query Failed");
+mysqli_query($conn,$sql)? header("Location:{$hostname}/admin/post.php"):print_r(mysqli_error($conn));
 
 ?>
