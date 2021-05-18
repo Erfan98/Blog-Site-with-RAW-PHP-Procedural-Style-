@@ -39,7 +39,7 @@
                     <i class="fa fa-calendar" aria-hidden="true"></i>
                     <?php echo $row['post_date']?>
                 </span>
-                <a class="read-more" href="single.php">read more</a>
+                <a class="read-more" href='single.php?id=<?php echo $row['post_id']?>'>read more</a>
             </div>
         </div>
             <?php
